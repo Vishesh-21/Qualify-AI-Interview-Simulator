@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { InterviewCardProps } from "@/types/InterviewType";
 import { Calendar, User, FileQuestion } from "lucide-react";
 import { formateDate } from "@/utils/questionsGenerationPrompt";
+import Link from "next/link";
 
 const InterviewCard: React.FC<InterviewCardProps> = ({ interview }) => {
   return (
@@ -64,9 +65,11 @@ const InterviewCard: React.FC<InterviewCardProps> = ({ interview }) => {
 
       {/* Footer */}
       <CardFooter className="flex justify-end">
-        <Button size="sm" className="cursor-pointer rounded-2xl">
-          View Details
-        </Button>
+        <Link href={`/interview/${interview.id}`}>
+          <Button size="sm" className="cursor-pointer rounded-2xl">
+            View Details
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
