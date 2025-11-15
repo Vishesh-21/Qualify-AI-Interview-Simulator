@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import AgentCard from "./AgentCard";
 import UserCard from "./UserCard";
 import TranscriptCard from "./TranscriptCard";
@@ -15,7 +15,8 @@ type Props = {
 };
 
 const Agent = ({ username, userId, type, imageUrl }: Props) => {
-  const { callStarted, isSpeaking, startCall, stopCall, messages } = useVapi();
+  const { callStarted, isSpeaking, startCall, stopCall, messages, loading } =
+    useVapi();
 
   return (
     <div className="p-4 space-y-5 md:mt-4">
@@ -29,6 +30,7 @@ const Agent = ({ username, userId, type, imageUrl }: Props) => {
         callStarted={callStarted}
         onEnd={stopCall}
         onStart={startCall}
+        loading={loading}
       />
     </div>
   );

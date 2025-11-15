@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Vapi from "@vapi-ai/web";
+import { set } from "date-fns";
 
 export const useVapi = () => {
   const [vapi] = useState(
@@ -9,6 +10,7 @@ export const useVapi = () => {
   const [callStarted, setCallStarted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const startCall = () => {
     const assistantId = process.env.NEXT_PUBLIC_VAPI_VOICE_ASSISTANT_ID;
@@ -16,10 +18,15 @@ export const useVapi = () => {
       console.error("Missing NEXT_PUBLIC_VAPI_VOICE_ASSISTANT_ID");
       return;
     }
-
+    setLoading(true);
     vapi.start(assistantId);
-    vapi.on("call-start", () => setCallStarted(true));
-    vapi.on("call-end", () => setCallStarted(false));
+    vapi.on("call-start", () => {
+      setCallStarted(true);
+      setLoading(false);
+    });
+    vapi.on("call-end", () => {
+      setCallStarted(false);
+    });
     // Capture transcript messages
     vapi.on("message", (message) => {
       if (message.type === "transcript") {
@@ -35,6 +42,24 @@ export const useVapi = () => {
     callStarted ? setIsSpeaking(true) : setIsSpeaking(false);
   }, [callStarted]);
 
-  const stopCall = () => vapi.stop();
-  return { vapi, callStarted, isSpeaking, startCall, stopCall, messages };
+  const stopCall = () => {
+    vapi.stop();
+    setCallStarted(false);
+    setIsSpeaking(false);
+    setLoading(false);
+  };
+  return {
+    vapi,
+    callStarted,
+    isSpeaking,
+    startCall,
+    stopCall,
+    messages,
+    loading,
+  };
 };
+
+
+
+
+ 
