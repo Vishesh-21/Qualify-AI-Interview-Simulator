@@ -26,10 +26,13 @@ export const metadata: Metadata = {
     "career growth",
     "interview practice tool",
   ],
+  icons: {
+    icon: "/logo.svg",
+  },
   authors: [
     {
       name: "Vishu Verma",
-      url: "https://vishesh-s-developer-portfolio.vercel.app/",
+      url: "https://viishu-portfolio.vercel.app/",
     },
   ],
   publisher: "Qualify AI",
