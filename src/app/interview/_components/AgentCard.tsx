@@ -27,7 +27,7 @@ const AgentCard = ({ isSpeaking }: Props) => {
             ></div>
           ))}
         </div>
-        <p className="md:text-medium mt-4 text-sm">AI Interviewer</p>
+        <p className="md:font-medium mt-4 text-sm md:text-lg">AI Interviewer</p>
       </CardContent>
     </Card>
   );

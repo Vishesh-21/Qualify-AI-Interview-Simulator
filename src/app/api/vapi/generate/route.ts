@@ -6,68 +6,78 @@ import { generateText } from "ai";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  try {
-    return NextResponse.json(
-      { status: "success", message: "hello" },
-      { status: 200 }
-    );
-  } catch (error: any) {
-    return NextResponse.json(
-      { status: "error", message: error.message ?? "Unexpected error" },
-      { status: 500 }
-    );
-  }
+async function generateInterviewQuestions({
+  type,
+  techstack,
+  role,
+  level,
+  amount,
+}: {
+  type: string;
+  techstack: string;
+  role: string;
+  level: string;
+  amount: number;
+}) {
+  const result = await generateText({
+    model: google("gemini-2.0-flash-001"),
+    prompt: questionsGenerationPrompt({ type, techstack, role, level, amount }),
+  });
+
+  const questions = parseQuestions(result.text);
+  if (!questions.length) throw new Error("No questions generated");
+  return questions;
 }
 
-//generate interview questions
 export async function POST(request: Request) {
   const { type, techstack, role, level, amount, userid } = await request.json();
 
+  if (!type || !techstack || !role || !level || !amount || !userid) {
+    return NextResponse.json(
+      { status: "error", message: "Missing required fields" },
+      { status: 400 }
+    );
+  }
+
   try {
-    const result = await generateText({
-      model: google("gemini-2.0-flash-001"),
-      prompt: questionsGenerationPrompt({
-        type,
-        techstack,
-        role,
-        level,
-        amount,
-      }),
+    const questions = await generateInterviewQuestions({
+      type,
+      techstack,
+      role,
+      level,
+      amount,
     });
 
-    const questions = parseQuestions(result.text);
-
-    if (!questions.length) {
-      return NextResponse.json(
-        { status: "error", message: "no questions generated" },
-        { status: 500 }
-      );
-    }
-
-    await prisma.interview.create({
+    const interview = await prisma.interview.create({
       data: {
         type,
         techstack,
         role,
         level,
         amount,
-        status: "finalized",
+        status: "pending",
         userId: userid,
         questions,
       },
     });
 
+    // Revalidate page after DB write
     revalidatePath("/interview");
 
     return NextResponse.json(
-      { status: "success", message: "Interview generated successfully!" },
+      {
+        status: "success",
+        message: "Interview generated successfully!",
+      },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error("POST /api/interviews error:", error);
+    console.error("POST /api/vapi/generate error:", error);
     return NextResponse.json(
-      { status: "error", message: error.message ?? "Unexpected error" },
+      {
+        status: "error",
+        message: error.message ?? "Unexpected error",
+      },
       { status: 500 }
     );
   }

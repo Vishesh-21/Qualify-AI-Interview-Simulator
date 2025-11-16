@@ -15,7 +15,7 @@ const UserCard = ({ imageUrl, username }: Props) => (
           className="object-cover w-full h-full rounded-full"
         />
       </div>
-      <p className="md:text-medium mt-4 text-sm">{username}</p>
+      <p className="md:font-medium mt-4 text-sm md:text-lg">{username}</p>
     </CardContent>
   </Card>
 );
