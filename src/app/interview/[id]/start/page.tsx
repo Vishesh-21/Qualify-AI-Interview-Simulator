@@ -45,6 +45,9 @@ export default async function InterviewTakingPage({
         username={user?.fullName || "User"}
         imageUrl={user?.imageUrl || "/userAvtar.jpeg"}
         questions={interview?.questions}
+        type = {interview?.type}
+        role = {interview?.role}
+        level = {interview?.level}
       />
     </div>
   );
@@ -52,7 +55,7 @@ export default async function InterviewTakingPage({
 
 const Banner = ({ interview }: { interview: Interview }) => {
   return (
-    <div className="flex items-start gap-2 justify-start ">
+    <div className="flex items-start gap-2 justify-start md:mb-0 mb-4">
       <div>
         <h2 className="text-2xl font-semibold">
           {interview.role} /{" "}
