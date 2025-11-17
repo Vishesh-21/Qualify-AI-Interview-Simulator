@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 type Interview = {
   id: string;
@@ -36,6 +37,7 @@ export default function InterviewCard({
   maxPreviewQuestions = 3,
 }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const router = useRouter();
 
   // make sure createdAt is a Date object
   const createdAt = useMemo(() => {
@@ -164,7 +166,11 @@ export default function InterviewCard({
             </Button>
           )}
 
-          <Button size="sm" className="cursor-pointer">
+          <Button
+            size="sm"
+            className="cursor-pointer"
+            onClick={() => router.push(`/interview/${interview.id}/start`)}
+          >
             Start Interview
           </Button>
         </div>

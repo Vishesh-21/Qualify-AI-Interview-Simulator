@@ -7,7 +7,7 @@ type Props = {
   onStart: () => void;
   onEnd: () => void;
   loading: boolean;
-  generating: boolean;
+  generating?: boolean;
 };
 
 const CallButton = ({
