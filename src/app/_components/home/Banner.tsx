@@ -28,7 +28,7 @@ const Banner = () => {
           Qualify AI
         </h1>
       </Cover>
-      <p className="text-sm w-2/3 text-center">
+      <p className="max-w-3xl text-center text-neutral-800 dark:text-neutral-500">
         Practice with an AI Voice Interviewer that simulates real interview
         scenarios — sharpen your skills, get instant feedback, and boost your
         confidence.

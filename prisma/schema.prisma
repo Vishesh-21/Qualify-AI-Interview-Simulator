@@ -27,3 +27,16 @@ model Interview {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Feedback {
+  id                  String   @id @default(uuid())
+  userId              String
+  interviewId         String
+  totalScore          Int
+  categoryScores      Json
+  strengths           String[]
+  areasForImprovement String[]
+  finalAssignment     String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}

@@ -14,9 +14,13 @@ type Props = {
   role: string | null;
   type: string | null;
   level: string | null;
+  id: string;
+  userId: string;
 };
 
 const Assemble = ({
+  userId,
+  id,
   username,
   imageUrl,
   questions,
@@ -24,9 +28,9 @@ const Assemble = ({
   type,
   level,
 }: Props) => {
-  const interviewDetails = { role, type, level };
+  const interviewDetails = { id, role, type, level };
   const { callStarted, isSpeaking, startCall, stopCall, messages, loading } =
-    useVapiInterviewer(questions,interviewDetails);
+    useVapiInterviewer(questions, interviewDetails, userId);
 
   return (
     <div className="md:py-4 space-y-5 md:mt-4">

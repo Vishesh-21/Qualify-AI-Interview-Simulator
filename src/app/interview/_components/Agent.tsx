@@ -6,7 +6,7 @@ import UserCard from "./UserCard";
 import TranscriptCard from "./TranscriptCard";
 import CallButton from "./CallButton";
 import { useVapi } from "@/hooks/useVapi";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 type Props = {
   username: string;

@@ -42,12 +42,14 @@ export default async function InterviewTakingPage({
     <div className="md:px-10 px-3 my-8">
       <Banner interview={interview} />
       <Assemble
+        userId={user.id}
+        id={interviewId}
         username={user?.fullName || "User"}
         imageUrl={user?.imageUrl || "/userAvtar.jpeg"}
         questions={interview?.questions}
-        type = {interview?.type}
-        role = {interview?.role}
-        level = {interview?.level}
+        type={interview?.type}
+        role={interview?.role}
+        level={interview?.level}
       />
     </div>
   );

@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import Vapi from "@vapi-ai/web";
+import { useRouter } from "next/navigation";
+import generateFeedback from "@/lib/actions/generateFeedback";
 
 const formatMessage = (message: any): string => {
   return `${message.role.toUpperCase()}: ${message.transcript}`;
@@ -11,11 +13,14 @@ type InterviewDetails = {
   role: string | null;
   type: string | null;
   level: string | null;
+  id: string;
 };
 export const useVapiInterviewer = (
   questions: string[],
-  interviewDetails: InterviewDetails
+  interviewDetails: InterviewDetails,
+  userId: string
 ) => {
+  const router = useRouter();
   const [vapi] = useState(
     () => new Vapi(process.env.NEXT_PUBLIC_VAPI_API_KEY!)
   );
@@ -23,13 +28,18 @@ export const useVapiInterviewer = (
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const messagesRef = useRef<string[]>([]);
 
   // ---------------------------
   // Handle incoming messages
   // ---------------------------
   const handleMessage = useCallback((message: any) => {
     if (message.type === "transcript") {
-      setMessages((prev) => [...prev, formatMessage(message)]);
+      setMessages((prev) => {
+        const updated = [...prev, formatMessage(message)];
+        messagesRef.current = updated;
+        return updated;
+      });
     }
   }, []);
 
@@ -65,6 +75,19 @@ export const useVapiInterviewer = (
 
     vapi.on("call-end", async () => {
       setCallStarted(false);
+      try {
+        const feedback = await generateFeedback({
+          interviewId: interviewDetails.id,
+          userId,
+          transcript: messages,
+        });
+
+        if (feedback?.success === true) {
+          router.push(`/interview/${interviewDetails.id}/feedback`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     });
 
     vapi.on("message", handleMessage);
