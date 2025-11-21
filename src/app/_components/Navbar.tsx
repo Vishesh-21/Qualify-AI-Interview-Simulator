@@ -26,8 +26,12 @@ export function HomeNavbar() {
       link: "/interview",
     },
     {
-      name: "Contact",
-      link: "#contact",
+    name : 'FAQ',
+    link : '#faq'
+    },
+    {
+      name: "About",
+      link: "#about",
     },
   ];
 

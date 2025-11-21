@@ -12,7 +12,10 @@ import { motion } from "motion/react";
 
 const FrequentQuestions = () => {
   return (
-    <div className="md:max-h-screen mb-10 flex items-center justify-center flex-col md:gap-14 gap-8">
+    <div
+      id="faq"
+      className="md:max-h-screen mb-10 flex items-center justify-center flex-col md:gap-14 gap-8"
+    >
       <div className="max-w-7xl mx-auto text-center">
         <p className="font-bold text-xl md:text-4xl dark:text-white text-black">
           Frequently{" "}
@@ -35,7 +38,9 @@ const FrequentQuestions = () => {
         {faqs.map((faq, index) => (
           <AccordionItem key={index} value={`item-${index + 1}`}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>
-            <AccordionContent className="text-neutral-400">{faq.answer}</AccordionContent>
+            <AccordionContent className="text-neutral-400">
+              {faq.answer}
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

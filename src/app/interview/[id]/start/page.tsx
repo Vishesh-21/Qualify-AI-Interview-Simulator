@@ -39,7 +39,7 @@ export default async function InterviewTakingPage({
   }
 
   return (
-    <div className="md:px-10 px-3 my-8">
+    <div className="md:px-10 px-3 md:my-8 my-4 max-w-5xl mx-auto ">
       <Banner interview={interview} />
       <Assemble
         userId={user.id}

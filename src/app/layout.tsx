@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import HomeNavbar from "./_components/Navbar";
+import MainFooter from "./_components/MainFooter";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -47,7 +48,7 @@ export default function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" suppressContentEditableWarning={true}>
         <body
-          className={`${poppins.className} antialiased overflow-x-hidden dark:bg-black max-w-7xl mx-auto`}
+          className={`${poppins.className} antialiased overflow-x-hidden dark:bg-black max-w-6xl mx-auto`}
         >
           <ThemeProvider
             attribute="class"
@@ -57,6 +58,7 @@ export default function RootLayout({
           >
             <HomeNavbar />
             {children}
+            <MainFooter />
           </ThemeProvider>
         </body>
       </html>

@@ -38,7 +38,7 @@ const InterviewGenerationPage = () => {
   }
 
   return (
-    <div className="md:px-10 px-3 my-8">
+    <div className="md:px-10 px-3 my-8 max-w-5xl mx-auto md:mb-8 mb-4">
       <h2 className="text-xl font-semibold">Generate Your Interview with AI</h2>
       <Agent
         username={user.fullName || "User"}

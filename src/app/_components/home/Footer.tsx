@@ -28,7 +28,7 @@ export default Footer;
 export function HelpingFooter() {
   return (
     <footer className="w-full dark:bg-black bg-white">
-      <div className="max-w-7xl mx-auto md:px-6 pb-8">
+      <div className="max-w-7xl mx-auto md:px-6 ">
         <Card className="w-full rounded-2xl shadow-sm ">
           <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center md:flex-row flex-col gap-2">
@@ -51,10 +51,6 @@ export function HelpingFooter() {
             <FloatingDockDemo />
           </CardContent>
         </Card>
-
-        <div className="mt-4 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Qualify AI. All rights reserved.
-        </div>
       </div>
     </footer>
   );

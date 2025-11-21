@@ -34,7 +34,7 @@ const Assemble = ({
 
   return (
     <div className="md:py-4 space-y-5 md:mt-4">
-      <div className="grid grid-cols-2 items-center justify-between gap-6">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-10 items-center justify-between">
         <AgentCard isSpeaking={isSpeaking} />
         <UserCard imageUrl={imageUrl} username={username} />
       </div>
