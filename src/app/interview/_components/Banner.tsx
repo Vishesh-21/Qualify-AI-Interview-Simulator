@@ -3,14 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { IconMicrophone } from "@tabler/icons-react";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const Banner = () => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleGenerateInterview = () => {
+    setLoading(true);
     router.push("/interview/generate");
+    // setLoading(false);
   };
 
   return (
@@ -25,9 +29,19 @@ const Banner = () => {
         <Button
           className="mt-4 relative cursor-pointer"
           onClick={handleGenerateInterview}
+          disabled={loading}
           variant={"outline"}
         >
-          Generate an Interview <IconMicrophone />
+          {loading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Generating...
+            </span>
+          ) : (
+            <>
+              Generate an Interview <IconMicrophone />
+            </>
+          )}
         </Button>
       </div>
     </WobbleCard>

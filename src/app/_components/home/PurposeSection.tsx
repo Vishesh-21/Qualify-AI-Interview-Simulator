@@ -17,7 +17,10 @@ const PurposeSection = () => {
       <BackgroundRippleEffect />
       <div className="mt-18 w-full flex items-center flex-col justify-center">
         <h2 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-neutral-800 md:text-4xl lg:text-7xl dark:text-neutral-100">
-          Empowering You to Crack Every Interview
+          Empowering You to Crack Every{" "}
+          <span className="bg-linear-to-tr from-purple-600 via-purple-900 to-orange-500 bg-clip-text text-transparent">
+            Interview
+          </span>
         </h2>
         <p className="relative z-10 mx-auto mt-4 max-w-[600px] text-center text-neutral-800 dark:text-neutral-500">
           Enhance your interview readiness with AI-driven mock sessions that

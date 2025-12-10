@@ -54,8 +54,8 @@ export const useVapi = (generatePayload?: GeneratePayload) => {
       if (generatePayload) {
         try {
           setGenerating(true);
-          const result = await generateInterview(generatePayload);
-
+          // const result = await generateInterview(generatePayload);
+          const result = { status: "success" }; 
           if (result.status === "success") {
             setGenerating(false);
             router.push("/interview");

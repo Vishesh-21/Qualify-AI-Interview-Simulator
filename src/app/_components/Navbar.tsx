@@ -15,6 +15,7 @@ import { useState } from "react";
 import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export function HomeNavbar() {
   const pathname = usePathname();
@@ -79,14 +80,14 @@ export function HomeNavbar() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="relative text-neutral-600 dark:text-neutral-300"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
               {!isSignedIn && (

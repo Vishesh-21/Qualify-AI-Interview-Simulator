@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 type Interview = {
   id: string;
@@ -37,6 +38,8 @@ export default function InterviewCard({
   maxPreviewQuestions = 3,
 }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
+
   const router = useRouter();
 
   // make sure createdAt is a Date object
@@ -169,9 +172,19 @@ export default function InterviewCard({
           <Button
             size="sm"
             className="cursor-pointer"
-            onClick={() => router.push(`/interview/${interview.id}/start`)}
+            disabled={isStarting}
+            onClick={() => {
+              setIsStarting(true);
+              router.push(`/interview/${interview.id}/start`);
+            }}
           >
-            Start Interview
+            {isStarting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" /> Starting...
+              </>
+            ) : (
+              "Start Interview"
+            )}
           </Button>
         </div>
       </CardFooter>

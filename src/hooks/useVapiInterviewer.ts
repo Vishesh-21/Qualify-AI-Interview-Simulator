@@ -76,11 +76,17 @@ export const useVapiInterviewer = (
     vapi.on("call-end", async () => {
       setCallStarted(false);
       try {
-        const feedback = await generateFeedback({
-          interviewId: interviewDetails.id,
-          userId,
-          transcript: messages,
-        });
+        // const feedback = await generateFeedback({
+        //   interviewId: interviewDetails.id,
+        //   userId,
+        //   transcript: messages,
+        // });
+
+        console.log(messages);
+
+        const feedback = {
+          success: true,
+        };
 
         if (feedback?.success === true) {
           router.push(`/interview/${interviewDetails.id}/feedback`);

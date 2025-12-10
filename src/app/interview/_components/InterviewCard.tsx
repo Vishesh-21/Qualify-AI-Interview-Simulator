@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -9,11 +11,20 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { InterviewCardProps } from "@/types/InterviewType";
-import { Calendar, User, FileQuestion } from "lucide-react";
+import { Calendar, User, FileQuestion, Loader2 } from "lucide-react";
 import { formateDate } from "@/utils/questionsGenerationPrompt";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const InterviewCard: React.FC<InterviewCardProps> = ({ interview }) => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleViewDetails = () => {
+    setLoading(true);
+    router.push(`/interview/${interview.id}`);
+  };
+
   return (
     <Card
       className="
@@ -65,9 +76,28 @@ const InterviewCard: React.FC<InterviewCardProps> = ({ interview }) => {
 
       {/* Footer */}
       <CardFooter className="flex justify-end">
-        <Link href={`/interview/${interview.id}`}>
-          <Button size="sm" className="cursor-pointer rounded-2xl">
-            View Details
+        {/* Prefetch + Client Loading Logic */}
+        <Link
+          href={`/interview/${interview.id}`}
+          prefetch-={"true"}
+          onClick={(e) => {
+            e.preventDefault(); // prevent navigation
+            handleViewDetails();
+          }}
+        >
+          <Button
+            size="sm"
+            className="cursor-pointer rounded-2xl"
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Loading...
+              </span>
+            ) : (
+              "View Details"
+            )}
           </Button>
         </Link>
       </CardFooter>
