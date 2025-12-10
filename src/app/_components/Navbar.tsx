@@ -14,26 +14,17 @@ import {
 import { useState } from "react";
 import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 export function HomeNavbar() {
+  const pathname = usePathname();
+
   const navItems = [
-    {
-      name: "Home",
-      link: "/",
-    },
-    {
-      name: "Interview",
-      link: "/interview",
-    },
-    {
-    name : 'FAQ',
-    link : '#faq'
-    },
-    {
-      name: "About",
-      link: "#about",
-    },
-  ];
+    { name: "Home", link: "/" },
+    { name: "Interview", link: "/interview" },
+    { name: "FAQ", link: "#faq", show: pathname === "/" },
+    { name: "About", link: "#about" },
+  ].filter((item) => item.show !== false);
 
   const { isSignedIn } = useUser();
   const { theme } = useTheme();

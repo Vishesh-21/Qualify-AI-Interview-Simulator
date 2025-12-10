@@ -1,7 +1,6 @@
 import Banner from "./_components/Banner";
 import AllInterviewPage from "./_components/AllInterviewPage";
 import { prisma } from "@/utils/prismaClient";
-import { Loader } from "lucide-react";
 
 export const revalidate = 0; // or set to a number like 60 for ISR
 
@@ -13,10 +12,9 @@ const InterviewDashBoardPage = async () => {
   } catch (error) {
     console.error("Prisma Error:", error);
     return (
-      <div className="md:px-10 px-3 my-8">
+      <div className="my-8">
         <Banner />
-        <h1 className="text-4xl mt-16 text-center  text-red-600 font-semibold">
-          <Loader className="animate-spin w-8 h-8 inline" />
+        <h1 className="text-2xl mt-16 text-center  text-red-600/70 font-semibold">
           <span className="ml-2">Failed to load interviews.</span>
         </h1>
       </div>
@@ -24,14 +22,15 @@ const InterviewDashBoardPage = async () => {
   }
 
   return (
-    <div className="md:px-10 px-3 my-8">
+    <div className="my-8">
       <Banner />
 
       {interviews.length === 0 ? (
-        <div className="mt-10">
-          <h1 className="text-5xl font-semibold text-neutral-700">
+        <div className="my-24 text-center">
+          <h1 className="text-2xl text-center font-semibold">
             No Interviews
           </h1>
+          <p className="text-medium text-foreground/50">Please generate an interview to start practice.</p>
         </div>
       ) : (
         <AllInterviewPage interviews={interviews} />

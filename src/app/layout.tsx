@@ -48,7 +48,7 @@ export default function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" suppressContentEditableWarning={true}>
         <body
-          className={`${poppins.className} antialiased overflow-x-hidden dark:bg-black max-w-6xl mx-auto`}
+          className={`${poppins.className} antialiased overflow-x-hidden dark:bg-black container mx-auto  md:px-10 px-3`}
         >
           <ThemeProvider
             attribute="class"
@@ -57,7 +57,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <HomeNavbar />
-            {children}
+            <main className="relative z-10 min-h-[70vh]">{children}</main>
             <MainFooter />
           </ThemeProvider>
         </body>

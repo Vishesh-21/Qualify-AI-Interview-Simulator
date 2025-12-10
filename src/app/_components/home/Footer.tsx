@@ -27,14 +27,14 @@ export default Footer;
 
 export function HelpingFooter() {
   return (
-    <footer className="w-full dark:bg-black bg-white">
-      <div className="max-w-7xl mx-auto md:px-6 ">
-        <Card className="w-full rounded-2xl shadow-sm ">
+    <footer className="w-full dark:bg-transparent bg-white md:mb-24 mb-10">
+      <div className="max-w-7xl mx-auto md:px-6">
+        <Card className="w-full rounded-2xl shadow-sm bg-transparent">
           <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center md:flex-row flex-col gap-2">
-              <div className="text-xl font-semibold tracking-wide gradient-title">
+            <div className="flex items-start md:flex-col flex-col">
+              <span className="text-2xl font-semibold tracking-wider gradient-title ">
                 Qualify AI
-              </div>
+              </span>
               <p className="md:text-base text-sm text-muted-foreground">
                 Helping you ace interviews —
                 <FlipWords
@@ -89,8 +89,8 @@ export function FloatingDockDemo() {
     },
   ];
   return (
-    <div className="md:flex items-center justify-center hidden">
-      <FloatingDock items={links} />
+    <div className="md:flex items-center justify-center hidden ">
+      <FloatingDock items={links}  />
     </div>
   );
 }
