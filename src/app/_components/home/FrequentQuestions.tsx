@@ -14,7 +14,7 @@ const FrequentQuestions = () => {
   return (
     <div
       id="faq"
-      className="md:max-h-screen mb-10 flex items-center justify-center flex-col md:gap-14 gap-8"
+      className="md:max-h-screen md:mb-10 mb-4 md:mt-0 mt-12 flex items-center justify-center flex-col md:gap-14 gap-2"
     >
       <div className="max-w-7xl mx-auto text-center">
         <p className="font-bold text-xl md:text-4xl dark:text-white text-black">

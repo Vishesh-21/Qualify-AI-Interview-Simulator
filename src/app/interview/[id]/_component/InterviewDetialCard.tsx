@@ -64,7 +64,7 @@ export default function InterviewCard({
     <Card className="w-full md:max-w-7xl">
       <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <CardTitle className="flex items-center gap-3">
+          <CardTitle className="flex  items-center gap-3">
             <span className="text-lg font-medium">{interview.role}</span>
             <Badge className="uppercase text-xs">{interview.level}</Badge>
             <Badge variant="secondary" className="ml-2">
@@ -150,12 +150,12 @@ export default function InterviewCard({
         </div>
       </CardContent>
 
-      <CardFooter className="flex items-center justify-between gap-2">
+      <CardFooter className="flex md:flex-row flex-col md:items-center items-start justify-between gap-2">
         <div className="text-sm text-muted-foreground">
           Created: {formattedDate}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex w-full md:items-center items-end gap-2">
           {interview.questions.length > maxPreviewQuestions && (
             <Button
               size="sm"

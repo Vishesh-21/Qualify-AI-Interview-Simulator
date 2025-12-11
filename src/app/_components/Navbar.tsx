@@ -53,7 +53,7 @@ export function HomeNavbar() {
                 }}
               />
             ) : (
-              <SignInButton>
+              <SignInButton mode="modal">
                 <NavbarButton variant={theme === "dark" ? "primary" : "dark"}>
                   Sign in
                 </NavbarButton>
@@ -91,7 +91,7 @@ export function HomeNavbar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               {!isSignedIn && (
-                <SignInButton>
+                <SignInButton mode="modal">
                   <NavbarButton
                     onClick={() => setIsMobileMenuOpen(false)}
                     variant={theme === "dark" ? "primary" : "dark"}

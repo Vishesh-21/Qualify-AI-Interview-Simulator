@@ -14,7 +14,6 @@ const Banner = () => {
   const handleGenerateInterview = () => {
     setLoading(true);
     router.push("/interview/generate");
-    // setLoading(false);
   };
 
   return (
@@ -27,7 +26,7 @@ const Banner = () => {
           Practice on real interview questions and get instant Feedback.
         </p>
         <Button
-          className="mt-4 relative cursor-pointer"
+          className="mt-4 relative cursor-pointer w-full md:w-fit w-full"
           onClick={handleGenerateInterview}
           disabled={loading}
           variant={"outline"}

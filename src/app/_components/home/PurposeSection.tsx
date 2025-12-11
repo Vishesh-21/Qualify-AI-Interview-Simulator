@@ -13,23 +13,23 @@ const PurposeSection = () => {
     navigate.push("/interview");
   };
   return (
-    <div className="relative flex min-h-screen md:mt-8 mt-2 w-full flex-col items-start justify-start overflow-hidden">
+    <div className="relative flex md:min-h-screen md:mt-8 w-full flex-col items-start justify-start overflow-hidden">
       <BackgroundRippleEffect />
-      <div className="mt-18 w-full flex items-center flex-col justify-center">
+      <div className="md:mt-18 mt-12 md:mb-0 mb-12 w-full flex items-center flex-col justify-center">
         <h2 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-neutral-800 md:text-4xl lg:text-7xl dark:text-neutral-100">
           Empowering You to Crack Every{" "}
           <span className="bg-linear-to-tr from-purple-600 via-purple-900 to-orange-500 bg-clip-text text-transparent">
             Interview
           </span>
         </h2>
-        <p className="relative z-10 mx-auto mt-4 max-w-[600px] text-center text-neutral-800 dark:text-neutral-500">
+        <p className="relative z-10 mx-auto md:mt-4 mt-2 max-w-[600px] text-center text-neutral-800 dark:text-neutral-500">
           Enhance your interview readiness with AI-driven mock sessions that
           simulate real scenarios, deliver real-time analytics, and provide
           personalized feedback—refining your responses and building the
           confidence to secure your ideal role.
         </p>
 
-        <div className="md:mt-24">
+        <div className="md:mt-24 mt-8">
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"

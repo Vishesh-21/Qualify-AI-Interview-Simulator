@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 export function MapSection() {
   return (
     <div className="md:pt-20 pb-10 dark:bg-black bg-white max-w-7xl">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto text-center md:mt-0 mt-12">
         <p className="font-bold text-xl md:text-4xl dark:text-white text-black">
           Practice{" "}
           <span className="text-neutral-400">
