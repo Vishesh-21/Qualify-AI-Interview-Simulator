@@ -24,7 +24,7 @@ export function HomeNavbar() {
     { name: "Home", link: "/" },
     { name: "Interview", link: "/interview" },
     { name: "FAQ", link: "#faq", show: pathname === "/" },
-    { name: "About", link: "#about" },
+    { name: "About", link: "/about" },
   ].filter((item) => item.show !== false);
 
   const { isSignedIn } = useUser();

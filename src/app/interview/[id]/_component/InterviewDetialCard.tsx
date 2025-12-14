@@ -155,7 +155,7 @@ export default function InterviewCard({
           Created: {formattedDate}
         </div>
 
-        <div className="flex w-full md:items-center items-end gap-2">
+        <div className="flex gap-2 w-full justify-end">
           {interview.questions.length > maxPreviewQuestions && (
             <Button
               size="sm"

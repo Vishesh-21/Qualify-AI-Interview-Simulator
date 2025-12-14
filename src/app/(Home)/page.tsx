@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect } from "react";
+import React from "react";
 import { Services } from "../_components/home/Services";
 import PurposeSection from "../_components/home/PurposeSection";
 import { MapSection } from "../_components/home/MapSection";
@@ -9,7 +7,6 @@ import FrequentQuestions from "../_components/home/FrequentQuestions";
 import Footer from "../_components/home/Footer";
 
 const HomeComponent = () => {
-
   return (
     <div>
       <PurposeSection />
