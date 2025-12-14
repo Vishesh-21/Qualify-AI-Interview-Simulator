@@ -42,7 +42,7 @@ export const Projects = () => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-fr"
+        className="grid grid-cols-1 md:grid-cols-6 gap-4"
       >
         {projects.map((project, idx) => {
           // Create bento grid layout pattern
@@ -58,29 +58,9 @@ export const Projects = () => {
                 transition: { duration: 0.2 },
               }}
               whileTap={{ scale: 0.98 }}
-              className={`${spanClass} h-full `}
+              className={`md:${spanClass} h-full`}
             >
               <Card className="relative h-full overflow-hidden group rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-black border-gray-200 dark:border-neutral-800">
-                {/* Animated border glow */}
-                <motion.div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.5), rgba(236, 72, 153, 0.5))",
-                    backgroundSize: "200% 200%",
-                    filter: "blur(20px)",
-                    zIndex: -1,
-                  }}
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-
                 <CardHeader className="relative z-10">
                   <CardTitle className="flex items-start justify-between gap-2">
                     <motion.span

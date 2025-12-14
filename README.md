@@ -4,7 +4,7 @@
 
 # Qualify AI – AI Interview Simulator
 
-</div>
+</div>  
 
 Qualify AI is a cutting-edge platform designed to help users practice and improve their interviewing skills through realistic, AI-powered mock interviews. Users can tailor interview sessions to specific job roles, technologies, and experience levels, receiving instant, detailed feedback to identify strengths and areas for improvement.
 
