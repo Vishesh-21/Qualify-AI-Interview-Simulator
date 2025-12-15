@@ -64,7 +64,7 @@ export const Features = () => {
 
                 <CardHeader className="relative z-10">
                   <CardTitle className="flex items-center gap-3 text-lg">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-100 text-violet-600 transition-colors group-hover:bg-violet-600 group-hover:text-white dark:bg-violet-900/30 dark:text-violet-400 dark:group-hover:bg-violet-500">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-100 text-violet-600 transition-colors group-hover:bg-violet-600 group-hover:text-white dark:bg-violet-900/30 dark:text-violet-100 dark:group-hover:bg-violet-500">
                       <Icon className="h-5 w-5" />
                     </div>
                     <span className="text-neutral-900 dark:text-neutral-100">

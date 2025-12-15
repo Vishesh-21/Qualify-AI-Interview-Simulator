@@ -206,3 +206,41 @@ export const teamMembers: TeamMember[] = [
     },
   },
 ];
+
+interface CategoryScore {
+  category: string;
+  score: number;
+}
+
+export interface FeedbackData {
+  totalScore: number;
+  categoryScores: CategoryScore[];
+  strengths: string[];
+  areasForImprovement: string[];
+  finalAssignment: string;
+}
+
+export const dummyFeedback: FeedbackData = {
+  totalScore: 78,
+  categoryScores: [
+    { category: "Communication Skills", score: 82 },
+    { category: "Technical Skills", score: 75 },
+    { category: "Problem Solving", score: 80 },
+    { category: "Cultural Fit", score: 76 },
+    { category: "Confidence and Clarity", score: 77 },
+  ],
+  strengths: [
+    "Excellent articulation and structured responses throughout the interview",
+    "Strong problem-solving approach with clear step-by-step explanations",
+    "Good understanding of core technical concepts and frameworks",
+    "Confident delivery with engaging presence",
+  ],
+  areasForImprovement: [
+    "Could provide more specific examples from past experience",
+    "Technical depth in certain areas could be strengthened",
+    "Response time could be improved for complex questions",
+    "Consider elaborating more on cultural fit aspects",
+  ],
+  finalAssignment:
+    "Overall, you demonstrated strong potential with solid communication and problem-solving skills. Focus on deepening your technical knowledge and providing more concrete examples from your experience. With practice in these areas, you'll be well-prepared for your target role. Keep up the good work!",
+};

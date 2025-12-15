@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Services } from "../_components/home/Services";
 import PurposeSection from "../_components/home/PurposeSection";

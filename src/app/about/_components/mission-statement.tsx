@@ -8,7 +8,7 @@ export const MissionStatement = () => {
       <CardHeader className="pb-1">
         <CardTitle className="flex items-center gap-3 text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900">
-            <Target className="h-5 w-5 text-neutral-700 dark:text-neutral-300" />
+            <Target className="h-5 w-5 text-violet-600 dark:text-violet-400" />
           </span>
           Our Mission
         </CardTitle>
