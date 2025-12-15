@@ -42,12 +42,12 @@ export const Projects = () => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 md:grid-cols-6 gap-4"
+        className="grid grid-cols-1 md:grid-cols-5 gap-4"
       >
         {projects.map((project, idx) => {
           // Create bento grid layout pattern
           const isLarge = idx === 0 || idx === 3;
-          const spanClass = isLarge ? "col-span-4" : "col-span-2";
+          const spanClass = isLarge ? "col-span-3" : "col-span-2";
 
           return (
             <motion.div
@@ -58,7 +58,7 @@ export const Projects = () => {
                 transition: { duration: 0.2 },
               }}
               whileTap={{ scale: 0.98 }}
-              className={`md:${spanClass} h-full`}
+              className={`${spanClass} h-full`}
             >
               <Card className="relative h-full overflow-hidden group rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-black border-gray-200 dark:border-neutral-800">
                 <CardHeader className="relative z-10">
