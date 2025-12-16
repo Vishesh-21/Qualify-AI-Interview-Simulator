@@ -3,7 +3,7 @@
 import { FeedbackSchema } from "@/types/InterviewType";
 import { prisma } from "@/utils/prismaClient";
 import { google } from "@ai-sdk/google";
-import { generateObject } from "ai";
+import { generateObject, generateText } from "ai";
 
 type CreateFeedbackParams = {
   interviewId: string;
@@ -71,5 +71,21 @@ export default async function generateFeedback({
       message: "Failed to generate feedback. Please try again later.",
       error: error,
     };
+  }
+}
+
+export async function check() {
+  console.log(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
+  try {
+    const result = await generateText({
+      model: google("gemini-2.0-flash"),
+      prompt: "Tell me a joke.",
+      system: "You are a helpful assistant.",
+    });
+
+    console.log(result.text);
+    return result.text;
+  } catch (error: any) {
+    console.log(error);
   }
 }

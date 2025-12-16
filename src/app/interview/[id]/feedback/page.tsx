@@ -16,7 +16,7 @@ import {
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { dummyFeedback, FeedbackData } from "@/utils/data";
+import { dummyFeedbackArray, FeedbackData } from "@/utils/data";
 
 const getCategoryIcon = (category: string) => {
   const lower = category.toLowerCase();
@@ -37,6 +37,9 @@ const getScoreColor = (score: number) =>
 
 const getBarColor = (score: number) =>
   score >= 80 ? "bg-green-500" : score >= 60 ? "bg-yellow-500" : "bg-red-500";
+
+const randomNumber = Math.floor(Math.random() * dummyFeedbackArray.length);
+const dummyFeedback = dummyFeedbackArray[randomNumber];
 
 const FeedbackComponent = ({
   feedback = dummyFeedback,

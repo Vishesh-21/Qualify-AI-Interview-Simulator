@@ -2,13 +2,18 @@ import Banner from "./_components/Banner";
 import AllInterviewPage from "./_components/AllInterviewPage";
 import { prisma } from "@/utils/prismaClient";
 
-export const revalidate = 0; // or set to a number like 60 for ISR
+export const revalidate = 0; 
 
 const InterviewDashBoardPage = async () => {
   let interviews = [];
 
   try {
-    interviews = await prisma.interview.findMany();
+    interviews = await prisma.interview.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 7,
+    });
   } catch (error) {
     console.error("Prisma Error:", error);
     return (
@@ -27,10 +32,10 @@ const InterviewDashBoardPage = async () => {
 
       {interviews.length === 0 ? (
         <div className="my-24 text-center">
-          <h1 className="text-2xl text-center font-semibold">
-            No Interviews
-          </h1>
-          <p className="text-medium text-foreground/50">Please generate an interview to start practice.</p>
+          <h1 className="text-2xl text-center font-semibold">No Interviews</h1>
+          <p className="text-medium text-foreground/50">
+            Please generate an interview to start practice.
+          </p>
         </div>
       ) : (
         <AllInterviewPage interviews={interviews} />

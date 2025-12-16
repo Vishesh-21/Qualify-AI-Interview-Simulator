@@ -15,6 +15,7 @@ type InterviewDetails = {
   level: string | null;
   id: string;
 };
+
 export const useVapiInterviewer = (
   questions: string[],
   interviewDetails: InterviewDetails,
@@ -24,84 +25,95 @@ export const useVapiInterviewer = (
   const [vapi] = useState(
     () => new Vapi(process.env.NEXT_PUBLIC_VAPI_API_KEY!)
   );
+
   const [callStarted, setCallStarted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+
   const messagesRef = useRef<string[]>([]);
 
-  // ---------------------------
-  // Handle incoming messages
-  // ---------------------------
-  const handleMessage = useCallback((message: any) => {
-    if (message.type === "transcript") {
-      setMessages((prev) => {
-        const updated = [...prev, formatMessage(message)];
-        messagesRef.current = updated;
-        return updated;
-      });
-    }
+  // -------------------------------
+  // MESSAGE HANDLER
+  // -------------------------------
+  const onMessage = useCallback((message: any) => {
+    if (message.type !== "transcript") return;
+
+    setMessages((prev) => {
+      const updated = [...prev, formatMessage(message)];
+      messagesRef.current = updated;
+      return updated;
+    });
   }, []);
 
-  // ---------------------------
-  // Start Call
-  // ---------------------------
+  // -------------------------------
+  // CALL START HANDLER
+  // -------------------------------
+  const onCallStart = useCallback(() => {
+    setCallStarted(true);
+    setLoading(false);
+  }, []);
+
+  // -------------------------------
+  // CALL END HANDLER
+  // -------------------------------
+  const onCallEnd = useCallback(async () => {
+    setCallStarted(false);
+
+    try {
+      const feedback = await generateFeedback({
+        interviewId: interviewDetails.id,
+        userId,
+        transcript: messagesRef.current,
+      });
+
+      console.log("Feedback:", feedback);
+      console.log("Transcript:", messagesRef.current);
+
+      console.log(feedback.data);
+
+      // if (feedback.success) {
+      //   router.push(`/interview/${interviewDetails.id}/feedback`);
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [interviewDetails.id, router, userId]);
+
+  // -------------------------------
+  // START CALL
+  // -------------------------------
   const startCall = useCallback(() => {
     const assistantId = process.env.NEXT_PUBLIC_VAPI_INTERVIEWER_TAKER_ID;
+
     if (!assistantId) {
-      console.error("Missing NEXT_PUBLIC_VAPI_VOICE_ASSISTANT_ID");
+      console.error("Missing NEXT_PUBLIC_VAPI_INTERVIEWER_TAKER_ID");
       return;
     }
 
     setLoading(true);
-    let formattedQuestions = "";
 
-    if (questions) {
-      formattedQuestions = questions
-        .map((question) => {
-          return `Question: ${question}`;
-        })
-        .join("\n");
-    }
+    const formattedQuestions = questions
+      .map((q) => `Question: ${q}`)
+      .join("\n");
 
+    // Start the call
     vapi.start(assistantId, {
-      variableValues: { questions: formattedQuestions, ...interviewDetails },
+      variableValues: {
+        questions: formattedQuestions,
+        ...interviewDetails,
+      },
     });
 
-    vapi.on("call-start", () => {
-      setCallStarted(true);
-      setLoading(false);
-    });
+    // Register listeners
+    vapi.on("call-start", onCallStart);
+    vapi.on("call-end", onCallEnd);
+    vapi.on("message", onMessage);
+  }, [vapi, questions, interviewDetails, onCallStart, onCallEnd, onMessage]);
 
-    vapi.on("call-end", async () => {
-      setCallStarted(false);
-      try {
-        // const feedback = await generateFeedback({
-        //   interviewId: interviewDetails.id,
-        //   userId,
-        //   transcript: messages,
-        // });
-
-        console.log(messages);
-
-        const feedback = {
-          success: true,
-        };
-
-        if (feedback?.success === true) {
-          router.push(`/interview/${interviewDetails.id}/feedback`);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    });
-
-    vapi.on("message", handleMessage);
-  }, [vapi, handleMessage, questions]);
-
-  // ---------------------------
-  // Stop Call
-  // ---------------------------
+  // -------------------------------
+  // STOP CALL
+  // -------------------------------
   const stopCall = useCallback(() => {
     vapi.stop();
     setCallStarted(false);
@@ -109,12 +121,24 @@ export const useVapiInterviewer = (
     setLoading(false);
   }, [vapi]);
 
-  // ---------------------------
-  // Update speaking state
-  // ---------------------------
+  // -------------------------------
+  // UPDATE SPEAKING STATE
+  // -------------------------------
   useEffect(() => {
     setIsSpeaking(callStarted);
   }, [callStarted]);
+
+  // -------------------------------
+  // CLEAN UP EVENT LISTENERS
+  // -------------------------------
+  useEffect(() => {
+    // Cleanup on unmount
+    return () => {
+      vapi.off("call-start", onCallStart);
+      vapi.off("call-end", onCallEnd);
+      vapi.off("message", onMessage);
+    };
+  }, [vapi, onCallStart, onCallEnd, onMessage]);
 
   return {
     vapi,
@@ -126,3 +150,4 @@ export const useVapiInterviewer = (
     loading,
   };
 };
+

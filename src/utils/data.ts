@@ -220,27 +220,125 @@ export interface FeedbackData {
   finalAssignment: string;
 }
 
-export const dummyFeedback: FeedbackData = {
-  totalScore: 78,
-  categoryScores: [
-    { category: "Communication Skills", score: 82 },
-    { category: "Technical Skills", score: 75 },
-    { category: "Problem Solving", score: 80 },
-    { category: "Cultural Fit", score: 76 },
-    { category: "Confidence and Clarity", score: 77 },
-  ],
-  strengths: [
-    "Excellent articulation and structured responses throughout the interview",
-    "Strong problem-solving approach with clear step-by-step explanations",
-    "Good understanding of core technical concepts and frameworks",
-    "Confident delivery with engaging presence",
-  ],
-  areasForImprovement: [
-    "Could provide more specific examples from past experience",
-    "Technical depth in certain areas could be strengthened",
-    "Response time could be improved for complex questions",
-    "Consider elaborating more on cultural fit aspects",
-  ],
-  finalAssignment:
-    "Overall, you demonstrated strong potential with solid communication and problem-solving skills. Focus on deepening your technical knowledge and providing more concrete examples from your experience. With practice in these areas, you'll be well-prepared for your target role. Keep up the good work!",
-};
+export const dummyFeedbackArray: FeedbackData[] = [
+  {
+    totalScore: 78,
+    categoryScores: [
+      { category: "Communication Skills", score: 82 },
+      { category: "Technical Skills", score: 75 },
+      { category: "Problem Solving", score: 80 },
+      { category: "Cultural Fit", score: 76 },
+      { category: "Confidence and Clarity", score: 77 },
+    ],
+    strengths: [
+      "Excellent articulation and structured responses throughout the interview",
+      "Strong problem-solving approach with clear step-by-step explanations",
+      "Good understanding of core technical concepts and frameworks",
+      "Confident delivery with engaging presence",
+    ],
+    areasForImprovement: [
+      "Could provide more specific examples from past experience",
+      "Technical depth in certain areas could be strengthened",
+      "Response time could be improved for complex questions",
+      "Consider elaborating more on cultural fit aspects",
+    ],
+    finalAssignment:
+      "Overall, you demonstrated strong potential with solid communication and problem-solving skills. Focus on deepening your technical knowledge and providing more concrete examples from your experience. With practice in these areas, you'll be well-prepared for your target role. Keep up the good work!",
+  },
+  {
+    totalScore: 85,
+    categoryScores: [
+      { category: "Communication Skills", score: 88 },
+      { category: "Technical Skills", score: 82 },
+      { category: "Problem Solving", score: 84 },
+      { category: "Cultural Fit", score: 80 },
+      { category: "Confidence and Clarity", score: 86 },
+    ],
+    strengths: [
+      "Clear and confident explanations",
+      "Strong analytical thinking",
+      "Good technical knowledge with practical examples",
+      "Positive attitude and enthusiasm",
+    ],
+    areasForImprovement: [
+      "Provide more concise answers",
+      "Focus on deep technical edge cases",
+      "Elaborate on teamwork examples",
+      "Balance speed with accuracy in problem-solving",
+    ],
+    finalAssignment:
+      "You have strong technical and communication skills. Focus on conciseness and depth in examples to improve further. Excellent overall performance.",
+  },
+  {
+    totalScore: 72,
+    categoryScores: [
+      { category: "Communication Skills", score: 75 },
+      { category: "Technical Skills", score: 70 },
+      { category: "Problem Solving", score: 72 },
+      { category: "Cultural Fit", score: 71 },
+      { category: "Confidence and Clarity", score: 73 },
+    ],
+    strengths: [
+      "Good understanding of concepts",
+      "Polite and professional demeanor",
+      "Able to follow instructions",
+      "Shows willingness to learn",
+    ],
+    areasForImprovement: [
+      "Improve clarity in answers",
+      "Provide more examples from experience",
+      "Strengthen technical depth",
+      "Boost confidence during problem-solving",
+    ],
+    finalAssignment:
+      "You demonstrate solid foundational skills and professionalism. Focus on confidence and technical depth to improve performance in future interviews.",
+  },
+  {
+    totalScore: 90,
+    categoryScores: [
+      { category: "Communication Skills", score: 92 },
+      { category: "Technical Skills", score: 88 },
+      { category: "Problem Solving", score: 91 },
+      { category: "Cultural Fit", score: 89 },
+      { category: "Confidence and Clarity", score: 90 },
+    ],
+    strengths: [
+      "Excellent problem-solving skills",
+      "Strong communication and articulation",
+      "Confident in technical and behavioral questions",
+      "Demonstrates leadership potential",
+    ],
+    areasForImprovement: [
+      "Focus on providing more detailed examples for complex scenarios",
+      "Balance speed with thoroughness in technical tasks",
+      "Work on minor edge-case scenarios",
+      "Keep improving knowledge in advanced concepts",
+    ],
+    finalAssignment:
+      "Outstanding performance with strong communication, problem-solving, and leadership skills. Minor improvements in examples and advanced technical knowledge can make you interview-ready for senior roles.",
+  },
+  {
+    totalScore: 68,
+    categoryScores: [
+      { category: "Communication Skills", score: 70 },
+      { category: "Technical Skills", score: 65 },
+      { category: "Problem Solving", score: 68 },
+      { category: "Cultural Fit", score: 67 },
+      { category: "Confidence and Clarity", score: 69 },
+    ],
+    strengths: [
+      "Shows willingness to learn",
+      "Polite and professional demeanor",
+      "Able to communicate basic concepts",
+      "Handles simple questions confidently",
+    ],
+    areasForImprovement: [
+      "Improve technical depth and understanding",
+      "Provide more structured answers",
+      "Increase confidence in complex questions",
+      "Work on problem-solving under pressure",
+    ],
+    finalAssignment:
+      "You have a good foundation but need to work on technical knowledge, problem-solving, and confidence. With focused practice, you can improve significantly.",
+  },
+];
